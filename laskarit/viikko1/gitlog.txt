@@ -1,0 +1,118 @@
+$ git log --stat | cat
+commit e79303235366cdecc5a64012097ef0bf63744806
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 02:24:16 2018 +0200
+
+    aaaa
+
+ tiedostoja/file1  | 0
+ tiedostoja/file2  | 0
+ tiedostoja/file22 | 0
+ tiedostoja/file3  | 5 +++++
+ 4 files changed, 5 insertions(+)
+
+commit 2fa08b09398e60c4b11272250e99b3047e8ff9ad
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 02:20:29 2018 +0200
+
+    tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 81eac5a7e12d8f20d534432d89081b5e48805245
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 02:04:06 2018 +0200
+
+    lisää muutoksia
+
+ eka.txt    | 5 ++++-
+ kolmas.txt | 4 +++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit 04d7e6f5682faad656460a181d68011abcc4b7e0
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 02:02:02 2018 +0200
+
+    eka
+
+ eka.txt      | 1 +
+ tiedosto.txt | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 80f9bb4f9feffe59195318c3c46e42e714204f29
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 02:00:02 2018 +0200
+
+    poisto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit a6915ad3759dfcca62f2be3761d24f4e51f1921b
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 01:54:51 2018 +0200
+
+    tiedostomuokkaus
+
+ stuff/jokintiedosto.txt | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+commit 2ab1beb61fbebb7f1f7a3d84d931fb438d2fbb9f
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 01:49:20 2018 +0200
+
+    lorem ipsum
+
+ stuff/jokintiedosto.txt | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+commit fd0a00298ef71829b6e94fe056d43360f7e05a86
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 01:27:14 2018 +0200
+
+    stuff lisäys
+
+ stuff/jokintiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 53101e27d2007bedbc91e4875f382b642bcfdd43
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 01:24:25 2018 +0200
+
+    3+2 muokkaus
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit a69682e8b71612641fff5ea6c86d8adc08befe06
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 01:23:22 2018 +0200
+
+    lisättiin kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8fdc4dd50c36ba9dcc70ce52ff771727ade21572
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 01:20:20 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 74234001245c01b0e2f73ae72651ae0759a7badb
+Author: Pekkuli <anssi.kivinen@gmail.com>
+Date:   Thu Mar 15 00:55:22 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
