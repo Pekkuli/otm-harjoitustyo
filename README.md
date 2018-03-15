@@ -1,7 +1,9 @@
 # Viikon 1 laskarien palautus
 
-_italic_
+##Tehtävät
 
-**bold**
+###Viikko1
 
-_**molemmat?**_
+[komentorivi.txt](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+
+[gitlog.txt](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
