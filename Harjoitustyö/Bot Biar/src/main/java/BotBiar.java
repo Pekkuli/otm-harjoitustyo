@@ -18,6 +18,8 @@ import static org.telegram.abilitybots.api.objects.Flag.REPLY;
 import static org.telegram.abilitybots.api.objects.Locality.ALL;
 import static org.telegram.abilitybots.api.objects.Locality.USER;
 import static org.telegram.abilitybots.api.objects.Privacy.PUBLIC;
+import org.telegram.abilitybots.api.sender.MessageSender;
+import org.telegram.abilitybots.api.sender.SilentSender;
 import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
 import static org.telegram.telegrambots.api.methods.ParseMode.HTML;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
@@ -33,6 +35,20 @@ public class BotBiar extends AbilityBot{
     public BotBiar() {
         super(BOT_TOKEN,BOT_USERNAME);
     }
+    
+    public void setSender(MessageSender sender){
+        this.sender=sender;
+    }
+  
+    public void SetSilent(SilentSender silent){
+        this.silent=silent;
+    }
+    
+    public void ResetDb() throws IOException{
+        this.db.clear();
+        this.db.close();
+    }
+    
 
     @Override
     public int creatorId() {
@@ -46,18 +62,28 @@ public class BotBiar extends AbilityBot{
             .info("says hello world!")
             .locality(ALL)
             .privacy(PUBLIC)
-            .action(ctx -> silent.send("Hello world!", ctx.chatId()))
+            .action(ctx -> {
+                try{
+                    sender.execute(new SendMessage(ctx.chatId(), "Hello world!"));
+                } catch (TelegramApiException e) {}
+                })
             .build();
     }
+    
+   
     
     public Ability saysHelloWorldToFriend() {
         return Ability.builder()
             .name("sayhi")
-            .info("Says hi to ")
+            .info("Says hi to a friend")
             .privacy(PUBLIC)
             .locality(USER)
             .input(1)
-            .action(ctx -> silent.send("Hi " + ctx.firstArg()+"!", ctx.chatId()))
+            .action(ctx -> {
+                try{
+                    sender.execute(new SendMessage(ctx.chatId(), "Hi "+ ctx.firstArg()+"!"));
+                } catch (TelegramApiException e) {}
+                })
             .build();
     }
     
@@ -123,7 +149,7 @@ public class BotBiar extends AbilityBot{
             .action(ctx -> silent.forceReply(msg, ctx.chatId()))
             .reply(update -> {
                     try{
-                         execute(new SendMessage(getChatId(update),LueHinta(update)).setParseMode("Markdown"));
+                        sender.execute(new SendMessage(getChatId(update),LueHinta(update)).setParseMode("Markdown"));
                     }catch (IOException | TelegramApiException e) {
                     }
                 },
