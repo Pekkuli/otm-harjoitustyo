@@ -1,7 +1,7 @@
 # Harjoitustyö: Bot Biar
 
 ### Dokumentaatio
-Käyttöohje
+[Käyttöohje](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/K%C3%A4ytt%C3%B6ohje.md)
 
 [Vaatimusmäärittely](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/vaatimusmaarittely.md)
 
