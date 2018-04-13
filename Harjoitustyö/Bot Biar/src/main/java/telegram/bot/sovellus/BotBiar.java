@@ -1,0 +1,180 @@
+package telegram.bot.sovellus;
+
+import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Predicate;
+import org.telegram.abilitybots.api.bot.AbilityBot;
+import org.telegram.abilitybots.api.objects.Ability;
+import static org.telegram.abilitybots.api.objects.Flag.MESSAGE;
+import static org.telegram.abilitybots.api.objects.Flag.REPLY;
+import static org.telegram.abilitybots.api.objects.Locality.ALL;
+import static org.telegram.abilitybots.api.objects.Locality.USER;
+import static org.telegram.abilitybots.api.objects.Privacy.PUBLIC;
+import org.telegram.abilitybots.api.sender.MessageSender;
+import org.telegram.abilitybots.api.sender.SilentSender;
+import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
+import static org.telegram.telegrambots.api.methods.ParseMode.HTML;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.Update;
+import org.telegram.telegrambots.exceptions.TelegramApiException;
+import telegram.bot.logiikka.LogiikkaTiedosto;
+
+public class BotBiar extends AbilityBot {
+    
+    public static String botToken = "500444223:AAG9Gd2WTJlSaLFMhahvzjExMNZ6FtM_6nQ";
+    public static String botUserName = "BotBiar_bot";
+    private LogiikkaTiedosto logiikka;
+
+    public BotBiar() {
+        super(botToken , botUserName);
+    }
+    
+    public void setSender(MessageSender sender) {
+        this.sender = sender;
+    }
+  
+    public void setSilent(SilentSender silent) {
+        this.silent = silent;
+    }
+    
+    public void resetDb() throws IOException {
+        this.db.clear();
+        this.db.close();
+    }
+    
+    @Override
+    public int creatorId() {
+        return 1337; 
+    }
+
+    public Ability sayHelloWorld() {
+        return Ability
+            .builder()
+            .name("hello")
+            .info("says hello world!")
+            .locality(ALL)
+            .privacy(PUBLIC)
+            .action(ctx -> {
+                try {
+                    sender.execute(new SendMessage(ctx.chatId(), "Hello world!"));
+                } catch (TelegramApiException e) { }
+            })
+            .build();
+    }
+    
+    public Ability saysHelloWorldToFriend() {
+        return Ability.builder()
+            .name("sayhi")
+            .info("Says hi to a friend")
+            .privacy(PUBLIC)
+            .locality(USER)
+            .input(1)
+            .action(ctx -> {
+                try {
+                    sender.execute(new SendMessage(ctx.chatId(), "Hi " + ctx.firstArg() + "!"));
+                } catch (TelegramApiException e) { }
+            })
+            .build();
+    }
+    
+    public Ability fishingLvl() {
+        String msg = "Fishing lvl?";
+        
+        return Ability.builder()
+            .name("fishinglvl")
+            .info("Tell your fishing level to the bot (1-99)")
+            .privacy(PUBLIC)
+            .locality(ALL)
+            .input(0)
+            .action(ctx -> silent.forceReply(msg, ctx.chatId()))
+            .reply(update -> {
+                silent.send(logiikka.checkIf99(update), getChatId(update));
+            },
+                MESSAGE,
+                REPLY,
+                isReplyToBot(),
+                isReplyToMessage(msg)
+            )
+            .build();
+    }
+    
+    private Predicate<Update> isReplyToMessage(String message) {
+        return update -> {
+            Message reply = update.getMessage().getReplyToMessage();
+            return reply.hasText() && reply.getText().equalsIgnoreCase(message);
+        };
+    }
+  
+    private Predicate<Update> isReplyToBot() {
+        return update -> update.getMessage()
+                .getReplyToMessage().getFrom().getUserName()
+                .equalsIgnoreCase(getBotUsername());
+    }
+    
+    
+    
+    public Ability priceCheck() {
+        String msg = "Item name?";
+        
+        return Ability.builder()
+            .name("price")
+            .info("Checks the price of a specified item")
+            .privacy(PUBLIC)
+            .locality(ALL)
+            .input(0)
+            .action(ctx -> silent.forceReply(msg, ctx.chatId()))
+            .reply(update -> {
+                try {
+                    sender.execute(new SendMessage(getChatId(update), logiikka.readPrice(update)).setParseMode("Markdown"));
+                } catch (IOException | TelegramApiException e) {
+                }
+            }, MESSAGE, REPLY, isReplyToBot(), isReplyToMessage(msg))
+            .build();
+    }
+    
+    
+    
+    public Ability checkHighScore() {
+        String msg = "Players name?";
+        
+        return Ability.builder()
+            .name("hiscore")
+            .info("Checks the highscore of specified player")
+            .privacy(PUBLIC)
+            .locality(ALL)
+            .input(0)
+            .action(ctx -> silent.forceReply(msg, ctx.chatId()))
+            .reply(update -> {
+                    try {
+                        execute(new SendMessage(getChatId(update), logiikka.readCharacter(update)).setParseMode(HTML));
+                    } catch (IOException | TelegramApiException ex) {
+                    }
+            }, MESSAGE, REPLY,
+            isReplyToBot(),
+            isReplyToMessage(msg)
+            )
+            .build();
+    }
+    
+    public void messageTo(SendMessage message) {
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+        }
+    }
+    
+    public SendMessage marcoPolo(long chatid) {
+        int random = ThreadLocalRandom.current().nextInt(3);
+        switch (random) {
+            case 0:
+                return new SendMessage(chatid, "Polo!");
+            case 1:
+                return new SendMessage(chatid, "Polo...");
+            case 2:
+                return new SendMessage(chatid, "Polo?");
+            default:
+                return new SendMessage(chatid, "Miten tässä nyt näin kävi?");
+        }
+    }
+} 

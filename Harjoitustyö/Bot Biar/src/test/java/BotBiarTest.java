@@ -11,6 +11,7 @@ import org.telegram.abilitybots.api.sender.MessageSender;
 import org.telegram.abilitybots.api.sender.SilentSender;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import telegram.bot.sovellus.BotBiar;
 
 
 public class BotBiarTest {
@@ -28,12 +29,12 @@ public class BotBiarTest {
         sender = mock(MessageSender.class);
         silent = mock(SilentSender.class);
         bot.setSender(sender);
-        bot.SetSilent(silent);
+        bot.setSilent(silent);
     }
     
     @After
     public void tearDown() throws IOException{
-        bot.ResetDb();
+        bot.resetDb();
     }
     
     @Test
