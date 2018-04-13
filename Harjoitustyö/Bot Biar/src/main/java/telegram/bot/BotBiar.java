@@ -1,7 +1,6 @@
-package telegram.bot.sovellus;
+package telegram.bot;
 
 import java.io.IOException;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
@@ -18,7 +17,7 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import telegram.bot.logiikka.LogiikkaTiedosto;
+import telegram.logiikka.LogiikkaTiedosto;
 
 public class BotBiar extends AbilityBot {
     
@@ -112,8 +111,6 @@ public class BotBiar extends AbilityBot {
                 .equalsIgnoreCase(getBotUsername());
     }
     
-    
-    
     public Ability priceCheck() {
         String msg = "Item name?";
         
@@ -132,8 +129,6 @@ public class BotBiar extends AbilityBot {
             }, MESSAGE, REPLY, isReplyToBot(), isReplyToMessage(msg))
             .build();
     }
-    
-    
     
     public Ability checkHighScore() {
         String msg = "Players name?";
@@ -161,20 +156,6 @@ public class BotBiar extends AbilityBot {
         try {
             execute(message);
         } catch (TelegramApiException e) {
-        }
-    }
-    
-    public SendMessage marcoPolo(long chatid) {
-        int random = ThreadLocalRandom.current().nextInt(3);
-        switch (random) {
-            case 0:
-                return new SendMessage(chatid, "Polo!");
-            case 1:
-                return new SendMessage(chatid, "Polo...");
-            case 2:
-                return new SendMessage(chatid, "Polo?");
-            default:
-                return new SendMessage(chatid, "Miten tässä nyt näin kävi?");
         }
     }
 } 

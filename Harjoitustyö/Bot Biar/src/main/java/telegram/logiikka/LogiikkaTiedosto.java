@@ -1,4 +1,4 @@
-package telegram.bot.logiikka;
+package telegram.logiikka;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
+import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 
 
@@ -88,5 +90,19 @@ public class LogiikkaTiedosto {
             numero += number.charAt(i);
         }
         return numero;
+    }
+    
+    public SendMessage marcoPolo(long chatid) {
+        int random = ThreadLocalRandom.current().nextInt(3);
+        switch (random) {
+            case 0:
+                return new SendMessage(chatid, "Polo!");
+            case 1:
+                return new SendMessage(chatid, "Polo...");
+            case 2:
+                return new SendMessage(chatid, "Polo?");
+            default:
+                return new SendMessage(chatid, "Miten tässä nyt näin kävi?");
+        }
     }
 }

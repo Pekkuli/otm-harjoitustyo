@@ -1,3 +1,5 @@
+package telegram.bot;
+
 import java.io.IOException;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +13,6 @@ import org.telegram.abilitybots.api.sender.MessageSender;
 import org.telegram.abilitybots.api.sender.SilentSender;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import telegram.bot.sovellus.BotBiar;
 
 
 public class BotBiarTest {
