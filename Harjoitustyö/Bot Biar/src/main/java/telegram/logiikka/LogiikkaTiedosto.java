@@ -11,8 +11,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 
 
@@ -62,23 +60,27 @@ public class LogiikkaTiedosto {
     
     public String readCharacter(Update update) throws MalformedURLException, IOException {
         String hs = "http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=";
-        String skillit = "Character not found!";
+        StringBuilder skillit = new StringBuilder();
         String[] skilltree = {"Total:", "Attack:", "Strength:", "Defence:", "Hitpoints:", "Ranged:", "Prayer:",
-                              "Magic:", "Cooking:", "Woodcutting:", "Fletching:        ", "Fishing:", "Firemaking:",
+                              "Magic:", "Cooking:", "Woodcutting:", "Fletching:", "Fishing:", "Firemaking:",
                               "Crafting:", "Smithing:", "Mining:", "Herblore:", "Agility:", "Thieving:",
-                              "Slayer:", "Farming:", "Runecraft:        ", "Hunter:             ", "Construction:"};
+                              "Slayer:", "Farming:", "Runecraft:", "Hunter:", "Construction:"};
         hs += update.getMessage().getText();
         URL hiscore = new URL(hs); 
         HttpURLConnection huc = (HttpURLConnection) hiscore.openConnection();
-        if (huc.getResponseCode() == 200) { // tarkistetaan onko pelaaja olemassa tarkistamalla responsecode
-            skillit = "Player: " + update.getMessage().getText() + "\n" + "SKILL     LVL     EXP \n";
+        if (huc.getResponseCode() == 200) { // tarkistetaan onko pelaajahahmo olemassa tarkistamalla responsecode
+            skillit.append("*Player: ").append(update.getMessage().getText()).append("*```\n");
+            skillit.append(String.format("%-14s%-8s%-14s\n", "SKILL", "LVL", "EXP"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(hiscore.openStream()));
             for (int i = 0; i < 24; i++) {
                 String[] skilli = reader.readLine().split(",");
-                skillit += skilltree[i] + " " + skilli[1] + "     " + skilli[2] + "\n";
+                skillit.append(String.format("%-14s%-8s%-14s\n", skilltree[i], skilli[1], skilli[2]));
             }
-        } 
-        return skillit;
+            skillit.append("```");
+        } else {
+            skillit.append("Character not found!");
+        }
+        return skillit.toString();
     }
     
     public String numberFormat(String number) {
@@ -92,17 +94,17 @@ public class LogiikkaTiedosto {
         return numero;
     }
     
-    public SendMessage marcoPolo(long chatid) {
-        int random = ThreadLocalRandom.current().nextInt(3);
-        switch (random) {
-            case 0:
-                return new SendMessage(chatid, "Polo!");
-            case 1:
-                return new SendMessage(chatid, "Polo...");
-            case 2:
-                return new SendMessage(chatid, "Polo?");
-            default:
-                return new SendMessage(chatid, "Miten tässä nyt näin kävi?");
-        }
-    }
+//    public SendMessage marcoPolo(long chatid) {
+//        int random = ThreadLocalRandom.current().nextInt(3);
+//        switch (random) {
+//            case 0:
+//                return new SendMessage(chatid, "Polo!");
+//            case 1:
+//                return new SendMessage(chatid, "Polo...");
+//            case 2:
+//                return new SendMessage(chatid, "Polo?");
+//            default:
+//                return new SendMessage(chatid, "Miten tässä nyt näin kävi?");
+//        }
+//    }
 }

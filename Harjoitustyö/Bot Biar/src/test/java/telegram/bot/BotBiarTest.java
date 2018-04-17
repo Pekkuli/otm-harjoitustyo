@@ -39,7 +39,7 @@ public class BotBiarTest {
     }
     
     @Test
-    public void CanSayHelloWorld() throws TelegramApiException{
+    public void testSayHelloWorld() throws TelegramApiException{
         Update upd  = new Update();
         EndUser user = EndUser.endUser(USER_ID, "Pekka", "Puu", "PekkaPuu");
         MessageContext context = MessageContext.newContext(upd, user, CHAT_ID);
@@ -50,7 +50,7 @@ public class BotBiarTest {
     }
     
     @Test
-    public void canSayHelloToFriend() throws TelegramApiException{
+    public void testSayHelloToFriend() throws TelegramApiException{
         Update upd  = new Update();
         EndUser user = EndUser.endUser(USER_ID, "Pekka", "Puu", "PekkaPuu");
         MessageContext context = MessageContext.newContext(upd, user, CHAT_ID, "Pekka");
