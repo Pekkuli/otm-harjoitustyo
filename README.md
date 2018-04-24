@@ -37,7 +37,7 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/ja
 Komento
 
 ```
-mvn package
+mvn clean compile assembly:single
 ```
 generoi hakemistoon _target_ suoritettavan jar-tiedoston _BotBiar-1.0-SNAPSHOT.jar_
 
