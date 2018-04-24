@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Käynnistä botti netbeans/vastaavalla tai .jarilla 
+Käynnistä botti netbeans/vastaavalla tai jar-tiedoston avulla. 
 Voit viestitellä botin kanssa telegramissa klikkaamalla seuraavaa [linkkiä](https://t.me/BotBiar_bot).
 
 ## Toiminnot
