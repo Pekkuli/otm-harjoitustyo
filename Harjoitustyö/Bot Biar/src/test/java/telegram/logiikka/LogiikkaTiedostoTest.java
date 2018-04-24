@@ -79,6 +79,12 @@ public class LogiikkaTiedostoTest {
         assertEquals("1,000,000,000", logiikka.numberFormat("1000000000"));
         assertEquals("100", logiikka.numberFormat("100"));
     }
+    
+//    @Test
+//    public void testlongBoi(){
+//        
+//        assertEquals(logiikka.longBoi(update));
+//    }
 
 
 //    @Test

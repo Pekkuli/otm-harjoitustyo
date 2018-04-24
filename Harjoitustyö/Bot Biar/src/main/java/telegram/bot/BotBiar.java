@@ -1,7 +1,11 @@
 package telegram.bot;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.telegram.abilitybots.api.bot.AbilityBot;
 import org.telegram.abilitybots.api.objects.Ability;
 import static org.telegram.abilitybots.api.objects.Flag.MESSAGE;
@@ -13,6 +17,7 @@ import org.telegram.abilitybots.api.sender.MessageSender;
 import org.telegram.abilitybots.api.sender.SilentSender;
 import static org.telegram.abilitybots.api.util.AbilityUtils.getChatId;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
@@ -60,7 +65,7 @@ public class BotBiar extends AbilityBot {
     
     public Ability saysHelloWorldToFriend() {
         return Ability
-            .builder().name("sayhi").info("Say hi to a friend").privacy(PUBLIC).locality(USER)
+            .builder().name("sayhi").info("Say hi to a friend").privacy(PUBLIC).locality(ALL)
             .input(1).action(ctx -> {
                 try {
                     sender.execute(new SendMessage(ctx.chatId(), "Hi " + ctx.firstArg() + "!"));
@@ -76,7 +81,10 @@ public class BotBiar extends AbilityBot {
             .privacy(PUBLIC).locality(ALL).input(0)
             .action(ctx -> silent.forceReply(msg, ctx.chatId()))
             .reply(update -> {
-                silent.send(logiikka.checkIf99(update), getChatId(update));
+                try {
+                    sender.execute(new SendMessage(getChatId(update), logiikka.checkIf99(update)));
+                } catch (TelegramApiException e) {
+                }
             }, MESSAGE, REPLY, isReplyToBot(), isReplyToMessage(msg)).build();
     }
     
@@ -114,7 +122,6 @@ public class BotBiar extends AbilityBot {
     
     public Ability checkHighScore() {
         String msg = "Players name?";
-        
         return Ability.builder()
             .name("hiscore")
             .info("Check the highscore of specified player")
@@ -125,7 +132,7 @@ public class BotBiar extends AbilityBot {
             .reply(update -> {
                     try {
                         execute(new SendMessage(getChatId(update), logiikka.readCharacter(update)).setParseMode("MarkDown"));
-                    } catch (IOException | TelegramApiException ex) {
+                    } catch (IOException | TelegramApiException e) {
                     }
             }, MESSAGE, REPLY,
             isReplyToBot(),
@@ -134,10 +141,26 @@ public class BotBiar extends AbilityBot {
             .build();
     }
     
-    public void messageTo(SendMessage message) {
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-        }
+    public Ability longBoi() {
+        return Ability
+            .builder().name("longBoi").info("check longBoi").locality(ALL).privacy(PUBLIC)
+            .action(ctx -> {
+                try {
+                    silent.send("Here you go!", ctx.chatId());
+                    for (SendPhoto photo : logiikka.longBoi(ctx.update())) {
+                        sendPhoto(photo);
+                    }
+                } catch (FileNotFoundException | UnsupportedEncodingException | TelegramApiException e) {
+                } 
+            }
+            )
+            .build();
     }
+    
+//    public void messageTo(SendMessage message) {
+//        try {
+//            execute(message);
+//        } catch (TelegramApiException e) {
+//        }
+//    }
 } 

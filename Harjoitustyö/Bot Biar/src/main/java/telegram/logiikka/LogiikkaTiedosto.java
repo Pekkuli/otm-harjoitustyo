@@ -1,22 +1,37 @@
 package telegram.logiikka;
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.Map;
+import org.telegram.telegrambots.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.api.objects.Update;
 
 
 public class LogiikkaTiedosto {
     
-    public LogiikkaTiedosto(){
+    private final SendPhoto ylavartalo;
+    private final SendPhoto ylavartalojatke;
+    private final SendPhoto keskivartalo;
+    private final SendPhoto alavartalo;
+    private final SendPhoto alavartalojatke;
+    private int longboilkm = 0;
+    
+    public LogiikkaTiedosto() {
+        this.ylavartalo = new SendPhoto().setNewPhoto(new File("src/resources/images/ylävartalo.png"));
+        this.ylavartalojatke = new SendPhoto().setNewPhoto(new File("src/resources/images/ylävartalojatke.png"));
+        this.keskivartalo = new SendPhoto().setNewPhoto(new File("src/resources/images/keskivartalo.png"));
+        this.alavartalo = new SendPhoto().setNewPhoto(new File("src/resources/images/alavartalo.png"));
+        this.alavartalojatke = new SendPhoto().setNewPhoto(new File("src/resources/images/alavartalojatke.png"));
     }
     
     public String checkIf99(Update update) {
@@ -38,16 +53,12 @@ public class LogiikkaTiedosto {
     public String readPrice(Update update) throws MalformedURLException, IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(new URL("https://rsbuddy.com/exchange/summary.json").openStream()));
         String jsontaulukko = reader.readLine(); // Luetaan esineiden hinnat tietokannasta
-        String item = update.getMessage().getText();
-        JsonNode juuri = new ObjectMapper(new JsonFactory()).readTree(jsontaulukko); //Json formatointi
-        Iterator<Map.Entry<String, JsonNode>> iterator = juuri.fields();
-        String result = "The price of " + item + " is "; 
+        String result = "The price of " + update.getMessage().getText() + " is "; 
         String price = "";
-        while (iterator.hasNext()) { // Esineen haku tietokannasta 
-            Map.Entry<String, JsonNode> kentta = iterator.next();
-            if (kentta.getValue().get("name").asText().equalsIgnoreCase(item)) {
-                price = kentta.getValue().get("overall_average").asText();
-                break;
+        JsonElement jelement = new JsonParser().parse(jsontaulukko);
+        for (Map.Entry<String, JsonElement> obj : jelement.getAsJsonObject().entrySet()) {
+            if (obj.getValue().getAsJsonObject().get("name").getAsString().equalsIgnoreCase(update.getMessage().getText())) {
+                price = obj.getValue().getAsJsonObject().get("overall_average").getAsString();
             }
         }
         if (price.isEmpty()) {
@@ -94,6 +105,22 @@ public class LogiikkaTiedosto {
         return numero;
     }
     
+    public ArrayList<SendPhoto> longBoi(Update update) throws FileNotFoundException, UnsupportedEncodingException {
+        ArrayList<SendPhoto> boiList = new ArrayList();
+        Long chatId = update.getMessage().getChatId();
+        boiList.add(this.ylavartalo.setChatId(chatId));
+        for (int i = 0; i < this.longboilkm; i++) {
+            boiList.add(this.ylavartalojatke.setChatId(chatId));
+        }
+        boiList.add(this.keskivartalo.setChatId(chatId));
+        for (int i = 0; i < this.longboilkm; i++) {
+            boiList.add(this.alavartalojatke.setChatId(chatId));
+        }
+        boiList.add(this.alavartalo.setChatId(chatId));
+        this.longboilkm++;
+        return boiList;
+    }
+    
 //    public SendMessage marcoPolo(long chatid) {
 //        int random = ThreadLocalRandom.current().nextInt(3);
 //        switch (random) {
@@ -107,4 +134,5 @@ public class LogiikkaTiedosto {
 //                return new SendMessage(chatid, "Miten tässä nyt näin kävi?");
 //        }
 //    }
+    
 }

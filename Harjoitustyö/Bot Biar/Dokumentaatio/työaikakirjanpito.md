@@ -8,13 +8,13 @@
 |9.4. |  2h  | Metodien koodausta ja testausta  |
 |10.4.|  3h  | Testien aloitus ja koodin muokkaus |
 |13.4.|  4h  | Checkstylen käyttöönotto, luokkien hajautus -> ui, logiikka ja bot | 
-|14.4.| 4h	 | Koodin parantelua, (metodien sekä testien) |
-|17.4.| 2h   | Dokumentaation täydentäminen |
-|     |    |  | 
-|     |    |  |
-|     |    |  |
-|     |    |  | 
-|     |    |  |
-|     |    |  |
-|     |    |  |
-| yht |  25h |  | 
+|14.4.|  4h	 | Koodin parantelua, (metodien sekä testien) |
+|17.4.|  2h	 | Dokumentaation täydentäminen |
+|23.4.|  3h	 | Uuden komennon lisäys, koodin yleinen muokkaus | 
+|24.4.|	 2h	 |  |
+|     |		 |  |
+|     |		 |  | 
+|     |		 |  |
+|     |		 |  |
+|     |		 |  |
+| yht |  30h |  | 

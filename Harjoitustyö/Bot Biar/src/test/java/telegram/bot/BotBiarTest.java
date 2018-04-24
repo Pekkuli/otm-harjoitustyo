@@ -1,6 +1,7 @@
 package telegram.bot;
 
 import java.io.IOException;
+import java.util.function.Predicate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +13,8 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.abilitybots.api.sender.MessageSender;
 import org.telegram.abilitybots.api.sender.SilentSender;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
+import org.telegram.telegrambots.api.objects.Message;
+import org.telegram.telegrambots.api.objects.User;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 
@@ -65,7 +68,38 @@ public class BotBiarTest {
 //        Update upd = new Update();
 //        EndUser user = EndUser.endUser(USER_ID, "Pekka", "Puu", "PekkaPuu");
 //        MessageContext context = MessageContext.newContext(upd, user, CHAT_ID, "89");
-//        bot.FishingLvl().action().accept(context);
+//        MessageContext.
+//        bot.fishingLvl().action().accept(context);
+//        
 //        verify(sender, times(1)).execute(new SendMessage(CHAT_ID, "Nice"));
 //    }
+    
+    private Update mockUpdateMsg(String args) {
+        Update upd = mock(Update.class);
+        Message msg = mock(Message.class);
+        User user = mock(User.class);
+        
+        when(msg.getFrom()).thenReturn(user);
+        when(msg.getText()).thenReturn(args);
+        when(msg.hasText()).thenReturn(true);
+        when(msg.isUserMessage()).thenReturn(true);
+        when(upd.getMessage()).thenReturn(msg);
+        when(msg.isUserMessage()).thenReturn(true);
+        when(msg.isUserMessage()).thenReturn(true);
+        
+        return upd;
+    }
+    
+    private Predicate<Update> isReplyToMessage(String message) {
+        return update -> {
+            Message reply = update.getMessage().getReplyToMessage();
+            return reply.hasText() && reply.getText().equalsIgnoreCase(message);
+        };
+    }
+  
+    private Predicate<Update> isReplyToBot() {
+        return update -> update.getMessage()
+                .getReplyToMessage().getFrom().getUserName()
+                .equalsIgnoreCase(this.bot.getBotUsername());
+    }
 }
