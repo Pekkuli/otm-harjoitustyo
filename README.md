@@ -1,5 +1,7 @@
 # Harjoitustyö: Bot Biar
 
+Bot Biar on telegram-viestisovellukselle tehty botti. Botti toteuttaa peliin [Runescape](https://oldschool.runescape.com/) erilaisia helppokäyttötoiminnallisuuksia, kuten esineiden hinnan nouto, pelaajien "statsien" haun yms. muuta enemmän tai vähemmän hyödyllistä.
+
 ## Dokumentaatio
 
 [Käyttöohje](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/K%C3%A4ytt%C3%B6ohje.md)
