@@ -14,4 +14,13 @@
                 <goal>checkstyle:checkstyle</goal>
             </goals>
         </action>
+        <action>
+            <actionName>CUSTOM-Compile with dependencies</actionName>
+            <displayName>Compile with dependencies</displayName>
+            <goals>
+                <goal>clean</goal>
+                <goal>compile</goal>
+                <goal>assembly:single</goal>
+            </goals>
+        </action>
     </actions>

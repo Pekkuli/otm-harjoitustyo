@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package telegram.logiikka;
 
 import java.io.IOException;
@@ -19,10 +14,7 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.User;
 import telegram.bot.BotBiar;
 
-/**
- *
- * @author Anssi
- */
+
 public class LogiikkaTiedostoTest {
     
     private BotBiar bot = new BotBiar();
