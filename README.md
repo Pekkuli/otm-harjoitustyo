@@ -14,6 +14,12 @@ Bot Biar on telegram-viestisovellukselle tehty botti. Botti toteuttaa peliin [Ru
 
 [Työaikakirjanpito](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/ty%C3%B6aikakirjanpito.md)
 
+## Releaset
+
+[Viikko 5](https://github.com/Pekkuli/otm-harjoitustyo/releases/tag/0.1)
+
+[viikko 7 (final)](https://github.com/Pekkuli/otm-harjoitustyo/releases/tag/0.1)
+
 ## Komentorivitoiminnot
 
 ### Testaus
@@ -39,7 +45,7 @@ Komento
 ```
 mvn package
 ```
-generoi hakemistoon _target_ suoritettavan jar-tiedoston _BotBiar-1.0-SNAPSHOT.jar_
+generoi hakemistoon _target_ suoritettavan jar-tiedoston _BotBiar-1.0-SNAPSHOT-jar-with-dependencies.jar_
 
 ### JavaDoc
 
@@ -56,8 +62,10 @@ JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/ind
 
 Tiedostoon [checkstyle.xml](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
 
+
 ```
  mvn jxr:jxr checkstyle:checkstyle
 ```
 
-Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_       
+Checkstyleen jääneistä virheistä katso [Testausdokumentti](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitustyö/Bot%20Biar/Dokumentaatio/Testausdokumentti.md#Checkstyle)

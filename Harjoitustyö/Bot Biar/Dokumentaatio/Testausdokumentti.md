@@ -18,6 +18,17 @@ Rivi kattavuus on 78% ja haarautumakattavuus 75% **Tässä pitää ottaa huomioo
 Ilman näitä rivi- ja haarautumakattavuus on ~80-90%
 <img src="https://raw.githubusercontent.com/Pekkuli/otm-harjoitustyo/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/testikattavuus.png" width=800>
 
+### Checkstyle
+Checkstylessä palautus hetkellä pitäisi olla 13 "virhettä" nämä ovat kaikki liian pitkistä metodeista johtuvia.
+10 virheistä tulee luokasta [telegram.bot.BotBiar](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/src/main/java/telegram/bot/BotBiar.java)
+ja 3 luokasta [telegram.logiikka.LogiikkaTiedosto](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/src/main/java/telegram/logiikka/LogiikkaTiedosto.java).
+Luokan [telegram.bot.BotBiar](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/src/main/java/telegram/bot/BotBiar.java)
+rakenteen takia (katso [Ability](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/arkkitehtuuri.md#abstraktio))
+katsoin että koodin luettavuuden takia botin abilityt on hyvä jättää "auki". Ability:ihin liittyvät errorit ovat siis täysin tietoisesti jätetty sellaisiksi luettavuuden parantamiseksi.
+Näistä en haluaisi miinuksia, koska jätin ne tahallani, mutta luokan
+[telegram.logiikka.LogiikkaTiedosto](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/src/main/java/telegram/logiikka/LogiikkaTiedosto.java) 
+3 virhettä jäi sen takia etten keksinyt tapaa,jolla kyseiset metodit saisi lyhyemmiksi. Hyväksyn jos näistä 3 virheestä rokotetaan pisteitä.
+
 ## Järjestelmätestaus
 Sovelluksen järjestelmätestaus suoritettiin manuaalisesti.
 
