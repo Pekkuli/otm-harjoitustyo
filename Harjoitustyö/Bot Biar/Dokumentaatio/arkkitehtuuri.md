@@ -2,7 +2,12 @@
 
 ## Rakenne
 
-<img src="https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/pakkausrakenne.png" width=240>
+<img src="https://raw.githubusercontent.com/Pekkuli/otm-harjoitustyo/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/pakkausrakenne.png" width=240>
+
+Käyttöliittymä
+--------------
+Kaikki sovelluksen käyttö tapahtuu telegrammissa keskustelussa botin kanssa. Keskustelun botin kanssa voi aloittaa seuraavasta [linkistä](https://t.me/BotBiar_bot).
+
 
 Ability
 ----------------------

@@ -18,7 +18,7 @@ Bot Biar on telegram-viestisovellukselle tehty botti. Botti toteuttaa peliin [Ru
 
 [Viikko 5](https://github.com/Pekkuli/otm-harjoitustyo/releases/tag/0.1)
 
-[viikko 7 (final)](https://github.com/Pekkuli/otm-harjoitustyo/releases/tag/0.1)
+[viikko 7 (FINAL)](https://github.com/Pekkuli/otm-harjoitustyo/releases/tag/1.0)
 
 ## Komentorivitoiminnot
 
@@ -68,4 +68,4 @@ Tiedostoon [checkstyle.xml](https://github.com/Pekkuli/otm-harjoitustyo/blob/mas
 ```
 
 Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_       
-Checkstyleen jääneistä virheistä katso [Testausdokumentti](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitustyö/Bot%20Biar/Dokumentaatio/Testausdokumentti.md#Checkstyle)
+Checkstyleen jääneistä virheistä katso [Testausdokumentti](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitustyö/Bot%20Biar/Dokumentaatio/Testausdokumentti.md#checkstyle)
