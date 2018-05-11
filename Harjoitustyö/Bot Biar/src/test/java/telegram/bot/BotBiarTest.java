@@ -63,17 +63,6 @@ public class BotBiarTest {
         Mockito.verify(sender, times(1)).execute(new SendMessage(CHAT_ID, "Hi Pekka!"));
     }
     
-//    @Test 
-//    public void AskFishingLvlWorks() throws TelegramApiException{
-//        Update upd = new Update();
-//        EndUser user = EndUser.endUser(USER_ID, "Pekka", "Puu", "PekkaPuu");
-//        MessageContext context = MessageContext.newContext(upd, user, CHAT_ID, "89");
-//        MessageContext.
-//        bot.fishingLvl().action().accept(context);
-//        
-//        verify(sender, times(1)).execute(new SendMessage(CHAT_ID, "Nice"));
-//    }
-    
     private Update mockUpdateMsg(String args) {
         Update upd = mock(Update.class);
         Message msg = mock(Message.class);

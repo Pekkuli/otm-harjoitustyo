@@ -10,7 +10,7 @@ Bot Biar on telegram-viestisovellukselle tehty botti. Botti toteuttaa peliin [Ru
 
 [Arkkitehtuurikuvaus](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/arkkitehtuuri.md)
 
-Testausdokumentti
+[Testausdokumentti](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/Testausdokumentti.md)
 
 [Työaikakirjanpito](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/ty%C3%B6aikakirjanpito.md)
 
@@ -37,7 +37,7 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/ja
 Komento
 
 ```
-mvn clean compile assembly:single
+mvn package
 ```
 generoi hakemistoon _target_ suoritettavan jar-tiedoston _BotBiar-1.0-SNAPSHOT.jar_
 

@@ -13,8 +13,5 @@
 |23.4.|  3h	 | Uuden komennon lisäys, koodin yleinen muokkaus | 
 |24.4.|	 2h	 | yleinen koodin siistiminen |
 | 5.5.|	 3h  | Metodien parantaminen, yleinen koodin laadun parantelu |
-|11.5.|	 3h	 | Dokumentaation viimeistely | 
-|     |	 	 |  |
-|     |		 |  |
-|     |		 |  |
-| yht |  36h |  | 
+|11.5.|	 6h	 | Dokumentaation viimeistely | 
+| yht |  39h |  | 

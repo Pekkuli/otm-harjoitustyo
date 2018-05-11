@@ -12,7 +12,7 @@ kannattaa syystä tai toisesta rajoitta, voidaan muiden käyttäjäryhmien luomi
 
 ## käyttöliittymäluonnos
 
-![luonnos](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/käyttöliittymäluonnos.png)
+<img src="https://raw.githubusercontent.com/Pekkuli/otm-harjoitustyo/master/Harjoitusty%C3%B6/Bot%20Biar/Dokumentaatio/k%C3%A4ytt%C3%B6liittym%C3%A4luonnos.png" width=400>
 Sovellus Toimii siten, että käyttäjän lähettämät komennot välittyvät telegrammin kautta botille, jossa botti lähettää telegrammin bot-API:in 
 erilaisia pyyntöjä komennosta riippuen.
 
