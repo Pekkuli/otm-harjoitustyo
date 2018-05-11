@@ -1,6 +1,7 @@
 # Käyttöohje
 
-Lataa release tai lähdekoodi. Käynnistä botti avaamalla releasesta saatu JAR-tiedosto tai lisää lähdekoodi esim. netbeanssiin ja suorita sieltä.
+## Käyttöönotto
+Lataa release tai lähdekoodi. Käynnistä botti avaamalla releasesta saatu JAR-tiedosto komennolla ```java -jar BotBiar.jar``` tai lisää lähdekoodi esim. netbeanssiin ja suorita sieltä.
 Voit viestitellä botin kanssa telegramissa seuraavan [linkin](https://t.me/BotBiar_bot) kautta. Telegram-botti eivät voi aloittaa keskusteluita,
 jonka vuoksi käyttäjän on tehtävä se.
 

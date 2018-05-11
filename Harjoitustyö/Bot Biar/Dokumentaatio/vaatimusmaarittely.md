@@ -19,3 +19,11 @@ erilaisia pyyntöjä komennosta riippuen.
 ## Suunnitellut ominaisuudet
 
 Esineiden hintojen haku, pelaajien tietojen hakeminen pelistä.
+
+## Kehitysideoita
+
+- Mahdollisuus käyttäjille määrittää suosikkeja esineiden hintojen hakuun jolloin olisi helppoa ja nopeaa
+hakea usein haettujen esineiden hinnat kerralla.
+
+
+- Mahdollisuus määrittää oma pelaajahahmo, jolloin käyttäjä voisi hakea oman hahmonsa "statsit" nopeasti.
