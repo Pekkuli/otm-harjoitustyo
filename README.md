@@ -41,9 +41,20 @@ mvn clean compile assembly:single
 ```
 generoi hakemistoon _target_ suoritettavan jar-tiedoston _BotBiar-1.0-SNAPSHOT.jar_
 
+### JavaDoc
+
+JavaDoc generoidaan komennolla
+
+```
+mvn javadoc:javadoc
+```
+
+JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
+
+
 ### Checkstyle
 
-Tiedostoon [checkstyle.xml](https://github.com/mluukkai/OtmTodoApp/blob/master/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
+Tiedostoon [checkstyle.xml](https://github.com/Pekkuli/otm-harjoitustyo/blob/master/Harjoitusty%C3%B6/Bot%20Biar/checkstyle.xml) määrittelemät tarkistukset suoritetaan komennolla
 
 ```
  mvn jxr:jxr checkstyle:checkstyle

@@ -1,10 +1,16 @@
 package telegram.logiikka;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.util.List;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.telegram.abilitybots.api.sender.MessageSender;
@@ -21,6 +27,14 @@ public class LogiikkaTiedostoTest {
     private LogiikkaTiedosto logiikka = new LogiikkaTiedosto();
     private MessageSender sender;
     private SilentSender silent;
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
 
     @Before
     public void setUp() {
@@ -72,18 +86,51 @@ public class LogiikkaTiedostoTest {
         assertEquals("100", logiikka.numberFormat("100"));
     }
     
-//    @Test
-//    public void testlongBoi(){
-//        
-//        assertEquals(logiikka.longBoi(update));
-//    }
-
-
-//    @Test
-//    public void testMarcoPolo() {
-//        logiikka.marcoPolo(0).getText().equalsIgnoreCase(anotherString)
-//        assertEquals((True, logiikka.marcoPolo(1).;
-//    }
+    @Test
+    public void testlongBoi() throws FileNotFoundException, UnsupportedEncodingException{
+        List lst = this.logiikka.longBoi(mockUpdate());
+        assertEquals(3, lst.size());
+        lst = this.logiikka.longBoi(mockUpdate());
+        assertEquals(5, lst.size());
+        lst = this.logiikka.longBoi(mockUpdate());
+        assertEquals(7, lst.size());
+        lst = this.logiikka.longBoi(mockUpdate());
+        assertEquals(9, lst.size());
+        lst = this.logiikka.longBoi(mockUpdate());
+        assertEquals(1, this.logiikka.longboilkm);
+        assertEquals(3, lst.size());
+    }
+    
+    @Test
+    public void testReset() throws FileNotFoundException, UnsupportedEncodingException{
+        List lst = this.logiikka.longBoi(mockUpdate());
+        this.logiikka.reset();
+        assertEquals(0, this.logiikka.longboilkm);
+    }
+    
+    @Test
+    public void testSkillFormat() throws Exception {
+        URL url = new URL("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="+"1234567");
+        assertEquals("", this.logiikka.skillFormat(url, "1234567"));
+        assertEquals(true, this.logiikka.skillFormat(url, "1234567").isEmpty());
+        url = new URL("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player="+"woox");
+        assertEquals(false, this.logiikka.skillFormat(url, "woox").isEmpty());
+    }
+    
+    private Update mockUpdate(){
+        Update upd = mock(Update.class);
+        Message msg = mock(Message.class);
+        User user = mock(User.class);
+        
+        when(msg.getFrom()).thenReturn(user);
+        when(msg.getText()).thenReturn("Default text");
+        when(msg.hasText()).thenReturn(true);
+        when(msg.isUserMessage()).thenReturn(true);
+        when(upd.getMessage()).thenReturn(msg);
+        when(upd.getMessage().isReply()).thenReturn(true);
+        
+        return upd;
+    }
     
     private Update mockUpdateMsg(String args) {
         Update upd = mock(Update.class);
@@ -98,5 +145,6 @@ public class LogiikkaTiedostoTest {
         
         return upd;
     }
+    
     
 }
